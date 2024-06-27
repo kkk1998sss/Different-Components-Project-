@@ -23,7 +23,7 @@ const OtpLogin = () => {
       body: JSON.stringify({ number }),
     };
 
-    fetch("http://localhost:5000/request-otp", requestOptions)
+    fetch("http://localhost:8000/request-otp", requestOptions)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
@@ -31,8 +31,7 @@ const OtpLogin = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
-        alert("OTP sent successfully");
+        alert(`OTP sent successfully ${data.message}`);
         setStep("verify-otp");
       })
       .catch((error) => {
@@ -49,7 +48,7 @@ const OtpLogin = () => {
       body: JSON.stringify({ number, otp }),
     };
 
-    fetch("http://localhost:5000/verify-otp", requestOptions)
+    fetch("http://localhost:8000/verify-otp", requestOptions)
       .then((res) => {
         if (!res.ok) {
           throw new Error("Network response was not ok");
